@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pharaoh Kipkirui Chirchir</title>
+  <title>Natassha's Portfolio</title>
   <style>
     /* Reset and Base Styles */
     * {
@@ -21,7 +21,7 @@
       text-decoration: none;
       color: inherit;
     }
-    
+
     /* Header */
     header {
       display: flex;
@@ -42,11 +42,12 @@
       margin: 0 15px;
       font-size: 1rem;
       transition: color 0.3s;
+      cursor: pointer;
     }
     header nav a:hover {
       color: #ffcc00;
     }
-    
+
     /* Hero Section */
     .hero {
       display: flex;
@@ -55,7 +56,7 @@
       justify-content: center;
       text-align: center;
       height: 100vh;
-      padding-top: 80px; /* Offset for the fixed header */
+      padding-top: 80px; /* Offset for fixed header */
     }
     .hero img {
       width: 150px;
@@ -86,67 +87,65 @@
     .cta-btn:hover {
       background: #e6b800;
     }
-    
-    /* Portfolio Section */
-    .portfolio-section {
-      padding: 60px 40px;
-      background: #fff;
-      color: #333;
-    }
-    .portfolio-section h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2rem;
-    }
-    .portfolio-items {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-    .portfolio-item {
-      background: #f8f9fa;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-    .portfolio-item:hover {
-      transform: translateY(-5px);
-    }
-    .portfolio-item img {
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      display: block;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none; /* Initially hidden */
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
     }
-    .item-content {
+    .modal {
+      background: #fff;
+      color: #333;
+      width: 75%;
+      height: 75%;
+      overflow-y: auto;
+      border-radius: 10px;
       padding: 20px;
+      position: relative;
     }
-    .item-content h3 {
-      margin-bottom: 10px;
-      font-size: 1.25rem;
+    .modal h2 {
+      margin-bottom: 20px;
     }
-    .item-content p {
-      font-size: 0.95rem;
+    .modal h3 {
+      margin: 20px 0 10px;
     }
-    
-    /* About and Contact Sections */
-    .about-section, .contact-section {
+    .modal p {
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    .modal ul {
+      list-style: disc;
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+    .modal .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ffcc00;
+      border: none;
+      padding: 5px 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* Contact Section */
+    .contact-section {
       padding: 60px 40px;
       text-align: center;
-    }
-    .about-section {
-      background: #f0f0f0;
-      color: #333;
-    }
-    .contact-section {
       background: #fff;
       color: #333;
     }
-    .contact-section a {
-      color: #1e3c72;
-      font-weight: bold;
-    }
-    
+
     /* Responsive Adjustments */
     @media (max-width: 768px) {
       header {
@@ -158,16 +157,19 @@
       .hero p {
         font-size: 1rem;
       }
+      .modal {
+        width: 90%;
+        height: 80%;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Header / Navigation -->
   <header>
-    <div class="logo"><a href="#">Pharaoh</a></div>
+    <div class="logo"><a href="#">Natassha</a></div>
     <nav>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#about">About</a>
+      <a id="aboutNav">About</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -175,46 +177,38 @@
   <!-- Hero Section -->
   <section class="hero">
     <img src="https://via.placeholder.com/150" alt="Natassha's Profile Picture" />
-    <h1>Pharaoh Kipkirui Chirchir</h1>
-    <p>Data Analyst | BI Specialist | Tech Innovator and ML Expert</p>
-    <a href="#portfolio" class="cta-btn">View My Work</a>
+    <h1>Natassha Selvaraj</h1>
+    <p>Data Analyst at ADA</p>
+    <button class="cta-btn" id="openAbout">About Me</button>
   </section>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio-section">
-    <h2>Portfolio Highlights</h2>
-    <div class="portfolio-items">
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/400x250" alt="Project 1" />
-        <div class="item-content">
-          <h3>Project One</h3>
-          <p>Short description of project one. This project demonstrates analytical skills and creative data visualization.</p>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/400x250" alt="Project 2" />
-        <div class="item-content">
-          <h3>Project Two</h3>
-          <p>Short description of project two. Explores data-driven solutions and insightful analysis.</p>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/400x250" alt="Project 3" />
-        <div class="item-content">
-          <h3>Project Three</h3>
-          <p>Short description of project three. Highlights the application of advanced analytical methods.</p>
-        </div>
-      </div>
+  <!-- About Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="close-btn" id="closeModal">Close</button>
+      <h2>About Me</h2>
+      <p>
+        <strong>I am a data analyst with a passion for complex data analysis and storytelling.</strong>
+        I believe that words and data are the two most powerful tools to change the world when given the right intent and audience. Over the past 7 years, I have helped organizations interpret data to drive meaningful decisions.
+      </p>
+      <h3>What I Do</h3>
+      <p>
+        By the end of the day, I work on simplifying complex tasks through programming, analyzing large datasets, and uncovering valuable insights. My expertise spans data analysis, visualization, machine learning, and problem solving. I specialize in end-to-end data analytics projects—from collecting data from third-party sources to delivering actionable insights, bridging the gap between raw data and decision-making.
+      </p>
+      <h3>What I Do</h3>
+      <p>
+        At night, I dedicate time to personal projects, continuous learning, and competitive programming. I challenge myself on platforms like HackerRank and explore new skills to stay ahead in the evolving data landscape. Most of my learning has come from online platforms—e-books, video tutorials, and self-paced courses. I deeply appreciate the democratization of education that has made these resources widely accessible.
+      </p>
+      <h3>Beyond Work</h3>
+      <p>
+        Explore some of my data analytics projects below. I have linked my original work to their GitHub repositories, so feel free to download, explore, and experiment with my code.
+      </p>
+      <h3>Giving Back to the Community</h3>
+      <p>
+        I believe in sharing knowledge and supporting the data community. I write blogs on data analytics trends, mentor junior analysts on turning complex data into actionable insights, and help teams build dashboards, spot trends, and find data-driven answers. I make data work for people—whether it's through insightful reports, user-friendly dashboards, or answering tough business questions.
+      </p>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="about-section">
-    <h2>About Me</h2>
-    <p style="max-width: 800px; margin: 20px auto;">
-      I am Natassha Selvaraj, a passionate Data Analyst at ADA. With a strong background in data science and visualization, I thrive on turning data into actionable insights. My projects combine creativity with technical expertise to solve complex problems.
-    </p>
-  </section>
+  </div>
 
   <!-- Contact Section -->
   <section id="contact" class="contact-section">
@@ -227,5 +221,35 @@
       <a href="#" style="margin: 0 10px;">GitHub</a>
     </div>
   </section>
+
+  <script>
+    // Get modal elements
+    const modalOverlay = document.getElementById('modalOverlay');
+    const openAboutBtn = document.getElementById('openAbout');
+    const closeModalBtn = document.getElementById('closeModal');
+    const aboutNav = document.getElementById('aboutNav');
+
+    // Function to open modal
+    function openModal() {
+      modalOverlay.style.display = 'flex';
+    }
+
+    // Function to close modal
+    function closeModal() {
+      modalOverlay.style.display = 'none';
+    }
+
+    // Event listeners for opening and closing the modal
+    openAboutBtn.addEventListener('click', openModal);
+    aboutNav.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Close modal if clicking outside the modal content
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === modalOverlay) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
