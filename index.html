@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Natassha's Portfolio</title>
   <style>
-    /* Reset and Base Styles */
+    /* Global Reset & Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -20,9 +20,10 @@
     a {
       text-decoration: none;
       color: inherit;
+      cursor: pointer;
     }
 
-    /* Header */
+    /* Header / Navigation */
     header {
       display: flex;
       justify-content: space-between;
@@ -42,7 +43,6 @@
       margin: 0 15px;
       font-size: 1rem;
       transition: color 0.3s;
-      cursor: pointer;
     }
     header nav a:hover {
       color: #ffcc00;
@@ -88,7 +88,55 @@
       background: #e6b800;
     }
 
-    /* Modal Styles */
+    /* Projects Section */
+    .projects {
+      padding: 60px 40px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    .projects .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .projects .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .project-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+    .project-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+    .project-card p {
+      margin-bottom: 10px;
+    }
+    .project-skills {
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+    .project-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #1e3c72;
+      font-weight: bold;
+    }
+
+    /* Modal Styles for About Section */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -170,6 +218,7 @@
     <div class="logo"><a href="#">Natassha</a></div>
     <nav>
       <a id="aboutNav">About</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -180,6 +229,33 @@
     <h1>Natassha Selvaraj</h1>
     <p>Data Analyst at ADA</p>
     <button class="cta-btn" id="openAbout">About Me</button>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>AI Trends &amp; Insights</h3>
+          <p>Analysis of global AI growth and its impact on industries.</p>
+          <p class="project-skills"><strong>Skills:</strong> Python, Pandas, Data Viz, Stats</p>
+          <a href="https://github.com/Chirchirp/The-Rise-of-Artificial-Intelligence-Trends-Impact-and-Insights.ipynb" target="_blank" class="project-link">View Project</a>
+        </div>
+        <div class="project-card">
+          <h3>Consumer Insights for Beats</h3>
+          <p>Segmentation and trend analysis with interactive visualizations.</p>
+          <p class="project-skills"><strong>Skills:</strong> Python, Pandas, Matplotlib</p>
+          <a href="https://colab.research.google.com/drive/1XNxkdTQ6K0fG2OkM0QLvi35e9zQ_1ODe?usp=sharing" target="_blank" class="project-link">View Project</a>
+        </div>
+        <div class="project-card">
+          <h3>Customer Churn Prediction</h3>
+          <p>XGBoost model with 89% accuracy and a Flask API for deployment.</p>
+          <p class="project-skills"><strong>Skills:</strong> Python, XGBoost, Flask</p>
+          <a href="https://github.com/Chirchirp/Final-Project--Model-Deployment" target="_blank" class="project-link">View Project</a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- About Modal -->
@@ -207,13 +283,27 @@
       <p>
         I believe in sharing knowledge and supporting the data community. I write blogs on data analytics trends, mentor junior analysts on turning complex data into actionable insights, and help teams build dashboards, spot trends, and find data-driven answers. I make data work for people—whether it's through insightful reports, user-friendly dashboards, or answering tough business questions.
       </p>
+      <ul>
+        <li>Data Mastery</li>
+        <li>Data Cleaning &amp; Transformation</li>
+        <li>Statistical Analysis</li>
+        <li>Predictive Modeling</li>
+        <li>Real-Time Insights</li>
+        <li>Visual Storytelling</li>
+        <li>Interactive Dashboards</li>
+        <li>Data Visualization</li>
+        <li>Reporting &amp; Analysis</li>
+        <li>User-Centric Design</li>
+      </ul>
     </div>
   </div>
 
   <!-- Contact Section -->
   <section id="contact" class="contact-section">
     <h2>Contact</h2>
-    <p style="margin-bottom:20px;">Feel free to reach out via email: <a href="mailto:natassha@example.com">natassha@example.com</a></p>
+    <p style="margin-bottom:20px;">
+      Feel free to reach out via email: <a href="mailto:natassha@example.com">natassha@example.com</a>
+    </p>
     <p>Connect with me on social media:</p>
     <div>
       <a href="#" style="margin: 0 10px;">Twitter</a>
