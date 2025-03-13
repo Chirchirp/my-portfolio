@@ -65,6 +65,7 @@
       position: relative;
       padding: 0.5rem 1rem;
       transition: var(--transition);
+      cursor: pointer;
     }
 
     nav a::after {
@@ -258,7 +259,7 @@
       text-decoration: underline;
     }
 
-    /* Advanced Modal with Backdrop Filter */
+    /* Advanced Modal with Backdrop Filter (shared styles) */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -283,8 +284,17 @@
       border-radius: 1rem;
       padding: 2rem;
       position: relative;
-      /* Changed text color to white for About Me modal */
-      color: #fff;
+    }
+
+    /* About Modal (more compact and dynamic) */
+    .about-modal {
+      font-size: 0.9rem;
+      animation: modalFloat 0.5s ease-out;
+    }
+
+    @keyframes modalFloat {
+      0% { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .modal h2 {
@@ -324,29 +334,28 @@
       background: var(--secondary);
     }
 
-    /* Contact Section */
-    .contact-section {
-      padding: 4rem 5%;
-      text-align: center;
+    /* Contact Form Styles inside Modal */
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .modal form label {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+    .modal form input,
+    .modal form textarea {
+      padding: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 0.5rem;
       background: transparent;
       color: var(--text-primary);
     }
-
-    .contact-section h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .contact-section a {
-      color: var(--primary);
-      font-weight: 600;
-      text-decoration: underline;
-    }
-
-    /* Animations */
-    @keyframes float {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    .modal form input:focus,
+    .modal form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
     }
 
     @media (max-width: 768px) {
@@ -365,7 +374,7 @@
       <a id="aboutNav">About</a>
       <a href="#projects">Projects</a>
       <a href="#resources">Resources</a>
-      <a href="#contact">Contact</a>
+      <a id="contactNav">Contact</a>
     </nav>
   </header>
 
@@ -430,30 +439,26 @@
     </div>
   </section>
 
-  <!-- About Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <button class="close-btn" id="closeModal">Close</button>
+  <!-- About Modal (Dynamic Floating Window, Compact Font) -->
+  <div class="modal-overlay" id="aboutModalOverlay">
+    <div class="modal about-modal">
+      <button class="close-btn" id="closeAboutModal">Close</button>
       <h2>About Me</h2>
       <p>
-        <strong>I am a data analyst with a passion for complex data analysis and storytelling.</strong>
-        I believe that words and data are the two most powerful tools to change the world when given the right intent and audience. Over the past 7 years, I have helped organizations interpret data to drive meaningful decisions.
+        <strong>I am a data analyst passionate about complex data analysis and storytelling.</strong>
+        I use words and data to create meaningful change. Over the past 7 years, I have helped organizations transform raw data into actionable insights.
       </p>
       <h3>What I Do</h3>
       <p>
-        By the end of the day, I work on simplifying complex tasks through programming, analyzing large datasets, and uncovering valuable insights. My expertise spans data analysis, visualization, machine learning, and problem solving. I specialize in end-to-end data analytics projects—from collecting data from third-party sources to delivering actionable insights, bridging the gap between raw data and decision-making.
+        I simplify complex tasks through programming, analyze large datasets, and uncover valuable insights. My expertise spans data analysis, visualization, machine learning, and problem solving.
       </p>
-      <h3>What I Do</h3>
+      <h3>Evenings & Beyond</h3>
       <p>
-        At night, I dedicate time to personal projects, continuous learning, and competitive programming. I challenge myself on platforms like HackerRank and explore new skills to stay ahead in the evolving data landscape. Most of my learning has come from online platforms—e-books, video tutorials, and self-paced courses. I deeply appreciate the democratization of education that has made these resources widely accessible.
+        At night, I work on personal projects, continuous learning, and competitive programming. I embrace self-paced learning through online courses, video tutorials, and e-books.
       </p>
-      <h3>Beyond Work</h3>
+      <h3>Community</h3>
       <p>
-        Explore some of my data analytics projects below. I have linked my original work to their GitHub repositories, so feel free to download, explore, and experiment with my code.
-      </p>
-      <h3>Giving Back to the Community</h3>
-      <p>
-        I believe in sharing knowledge and supporting the data community. I write blogs on data analytics trends, mentor junior analysts on turning complex data into actionable insights, and help teams build dashboards, spot trends, and find data-driven answers. I make data work for people—whether it's through insightful reports, user-friendly dashboards, or answering tough business questions.
+        I share my knowledge by writing blogs, mentoring junior analysts, and building user-friendly dashboards. I make data work for people.
       </p>
       <ul>
         <li>Data Mastery</li>
@@ -463,49 +468,70 @@
         <li>Real-Time Insights</li>
         <li>Visual Storytelling</li>
         <li>Interactive Dashboards</li>
-        <li>Data Visualization</li>
-        <li>Reporting &amp; Analysis</li>
         <li>User-Centric Design</li>
       </ul>
     </div>
   </div>
 
-  <!-- Contact Section -->
-  <section class="contact-section" id="contact">
-    <h2>Contact</h2>
-    <p style="margin-bottom:1rem;">
-      Feel free to reach out via email: <a href="mailto:natassha@example.com">natassha@example.com</a>
-    </p>
-    <p>Connect with me on social media:</p>
-    <div>
-      <a href="#" style="margin: 0 1rem;">Twitter</a>
-      <a href="#" style="margin: 0 1rem;">LinkedIn</a>
-      <a href="#" style="margin: 0 1rem;">GitHub</a>
+  <!-- Contact Modal with Form -->
+  <div class="modal-overlay" id="contactModalOverlay">
+    <div class="modal">
+      <button class="close-btn" id="closeContactModal">Close</button>
+      <h2>Contact Me</h2>
+      <form id="contactForm">
+        <label for="contactName">Name:</label>
+        <input type="text" id="contactName" name="contactName" required />
+        <label for="contactEmail">Email:</label>
+        <input type="email" id="contactEmail" name="contactEmail" required />
+        <label for="contactMessage">Message:</label>
+        <textarea id="contactMessage" name="contactMessage" rows="4" required></textarea>
+        <button type="submit" class="cta-btn">Send Message</button>
+      </form>
     </div>
-  </section>
+  </div>
 
   <script>
-    // Modal functionality
-    const modalOverlay = document.getElementById('modalOverlay');
+    // About Modal functionality
+    const aboutModalOverlay = document.getElementById('aboutModalOverlay');
     const openAboutBtn = document.getElementById('openAbout');
-    const closeModalBtn = document.getElementById('closeModal');
     const aboutNav = document.getElementById('aboutNav');
+    const closeAboutModal = document.getElementById('closeAboutModal');
 
-    function openModal() {
-      modalOverlay.style.display = 'flex';
+    function openAboutModal() {
+      aboutModalOverlay.style.display = 'flex';
     }
 
-    function closeModal() {
-      modalOverlay.style.display = 'none';
+    function closeAbout() {
+      aboutModalOverlay.style.display = 'none';
     }
 
-    openAboutBtn.addEventListener('click', openModal);
-    aboutNav.addEventListener('click', openModal);
-    closeModalBtn.addEventListener('click', closeModal);
+    openAboutBtn.addEventListener('click', openAboutModal);
+    aboutNav.addEventListener('click', openAboutModal);
+    closeAboutModal.addEventListener('click', closeAbout);
+    aboutModalOverlay.addEventListener('click', function(e) {
+      if (e.target === aboutModalOverlay) {
+        closeAbout();
+      }
+    });
 
-    modalOverlay.addEventListener('click', function(e) {
-      if (e.target === modalOverlay) {
-        closeModal();
+    // Contact Modal functionality
+    const contactModalOverlay = document.getElementById('contactModalOverlay');
+    const contactNav = document.getElementById('contactNav');
+    const closeContactModal = document.getElementById('closeContactModal');
+
+    function openContactModal() {
+      contactModalOverlay.style.display = 'flex';
+    }
+
+    function closeContact() {
+      contactModalOverlay.style.display = 'none';
+    }
+
+    contactNav.addEventListener('click', openContactModal);
+    closeContactModal.addEventListener('click', closeContact);
+    contactModalOverlay.addEventListener('click', function(e) {
+      if (e.target === contactModalOverlay) {
+        closeContact();
       }
     });
   </script>
