@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Natassha's Portfolio</title>
+  <title>Pharaoh's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #00f7ff;
@@ -12,8 +13,8 @@
       --glass-bg: rgba(255, 255, 255, 0.05);
       --text-primary: #f0f0f0;
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --neon-shadow: 0 0 15px var(--primary);
     }
-
     /* Global Reset and Smooth Scrolling */
     * {
       margin: 0;
@@ -31,7 +32,9 @@
       line-height: 1.7;
       overflow-x: hidden;
     }
-
+    section {
+      scroll-margin-top: 100px;
+    }
     /* Header with Glass Morphism */
     header {
       backdrop-filter: blur(16px);
@@ -77,15 +80,47 @@
     nav a:hover::after {
       width: 100%;
     }
-
-    /* Hero Section with Parallax Effect */
+    .mobile-hamburger {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .mobile-hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      transition: var(--transition);
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1500;
+    }
+    .mobile-nav a {
+      color: #fff;
+      font-size: 1.5rem;
+      margin: 1rem 0;
+    }
+    /* Hero Section – Split into Photo, Name/Role, and Education */
     .hero {
       min-height: 100vh;
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       padding: 8rem 5% 4rem;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
     .hero::before {
       content: '';
@@ -98,24 +133,41 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
     .profile-container {
       position: relative;
       z-index: 1;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .photo-section { }
+    .name-section { }
+    .education {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      color: #ccc;
+      line-height: 1.5;
+    }
+    .education h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
     }
     .profile-image {
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      /* Removing the border for a clean look */
       object-fit: cover;
-      margin-bottom: 2rem;
-      transition: var(--transition);
       box-shadow: 0 0 40px rgba(0, 247, 255, 0.2);
     }
     .hero h1 {
       font-size: 3.5rem;
-      margin-bottom: 1rem;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       background-clip: text;
@@ -123,7 +175,13 @@
     }
     .hero p {
       font-size: 1.2rem;
-      margin-bottom: 2rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .cta-btn {
       background: linear-gradient(45deg, var(--primary), var(--secondary));
@@ -147,12 +205,12 @@
     .cta-btn:hover::after {
       opacity: 1;
     }
-
     /* Projects Section */
     .projects {
       padding: 4rem 5%;
       background: transparent;
-      color: var(--text-primary);
+      color: #e0e0e0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
     .projects .section-title {
       text-align: center;
@@ -166,20 +224,26 @@
     }
     .project-card {
       background: var(--glass-bg);
+      -webkit-backdrop-filter: blur(12px);
       backdrop-filter: blur(12px);
       border-radius: 1rem;
       padding: 2rem;
       border: 1px solid rgba(255, 255, 255, 0.1);
       transition: var(--transition);
       transform-style: preserve-3d;
+      perspective: 1000px;
     }
     .project-card:hover {
-      transform: translateY(-0.5rem) rotateX(5deg) rotateY(5deg);
-      box-shadow: 0 25px 50px -12px rgba(0, 247, 255, 0.25);
+      transform: translateY(-10px) rotateX(10deg) rotateY(5deg);
+      box-shadow: var(--neon-shadow, 0 25px 50px -12px rgba(0, 247, 255, 0.25));
     }
     .project-card h3 {
-      margin-bottom: 1rem;
       font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .project-card p {
       margin-bottom: 1rem;
@@ -189,13 +253,23 @@
       margin-top: 0.5rem;
     }
     .project-link {
+      position: relative;
+      z-index: 1;
       display: inline-block;
       margin-top: 0.5rem;
       color: var(--primary);
       font-weight: 600;
       text-decoration: underline;
+      transition: var(--transition);
     }
-
+    .project-link:active,
+    .project-link:focus {
+      color: var(--secondary);
+      transform: scale(0.95);
+    }
+    .project-card::after {
+      pointer-events: none;
+    }
     /* Resources Section */
     .resources {
       padding: 4rem 5%;
@@ -237,8 +311,7 @@
       font-weight: 600;
       text-decoration: underline;
     }
-
-    /* Modal Shared Styles */
+    /* Modal Shared Styles – Centered in Viewport and Above Header */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -250,20 +323,21 @@
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 200;
+      z-index: 2000;
     }
+    /* Improved Modal Appearance */
     .modal {
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #fff;
+      color: #333;
       width: 75%;
       max-height: 75%;
       overflow-y: auto;
       border-radius: 1rem;
       padding: 2rem;
       position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
-    .about-modal {
+    .about-modal, .terms-modal, .privacy-modal, .skills-modal {
       font-size: 0.9rem;
       animation: modalFloat 0.5s ease-out;
     }
@@ -302,42 +376,140 @@
     .modal .close-btn:hover {
       background: var(--secondary);
     }
-
-    /* Contact Form Styles */
+    /* Contact Form Styles – Compact and Visible */
     .modal form {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
     }
     .modal form label {
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.25rem;
+      color: #333;
     }
     .modal form input,
     .modal form textarea {
-      padding: 0.5rem;
-      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ccc;
       border-radius: 0.5rem;
-      background: transparent;
-      color: var(--text-primary);
+      background: #f9f9f9;
+      color: #333;
+      font-size: 0.9rem;
+      transition: border 0.3s, box-shadow 0.3s;
     }
     .modal form input:focus,
     .modal form textarea:focus {
       outline: none;
       border-color: var(--primary);
+      box-shadow: 0 0 5px rgba(0, 247, 255, 0.5);
     }
-
+    /* Footer Section – Uniform with Header Theme */
+    footer {
+      backdrop-filter: blur(16px);
+      background: var(--glass-bg);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem 5%;
+      text-align: center;
+      color: #fff;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-left, .footer-right {
+      margin: 0.5rem 0;
+    }
+    .footer-nav a {
+      margin: 0 1rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .footer-nav a:hover {
+      text-decoration: underline;
+    }
+    .footer-right a {
+      margin: 0 0.5rem;
+      color: #fff;
+      display: inline-block;
+    }
+    .footer-right a svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.5rem; }
-      nav { display: none; } /* Consider mobile menu */ 
+      nav { display: none; }
+      .mobile-hamburger { display: flex; }
       .modal { width: 90%; max-height: 80%; }
+      .footer-container { flex-direction: column; }
+    }
+    nav a.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    nav a.active::after {
+      width: 100%;
+    }
+    .cta-btn {
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 20%, rgba(255,255,255,0.2) 50%, transparent 80%);
+      animation: shine 3s infinite;
+    }
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .modal form input,
+    .modal form textarea {
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .modal form input:focus,
+    .modal form textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+    }
+    /* Skills Modal – Two Column Layout */
+    .skills-columns {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .skills-columns > div {
+      flex: 1 1 300px;
+      text-align: left;
     }
   </style>
 </head>
 <body>
   <!-- Header / Navigation -->
   <header>
-    <div class="logo"><a href="#home">Natassha</a></div>
+    <div class="logo"><a href="#home">Pharaoh</a></div>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <nav>
       <a href="#home">Home</a>
       <a id="aboutNav">About</a>
@@ -345,15 +517,43 @@
       <a href="#resources">Resources</a>
       <a id="contactNav">Contact</a>
     </nav>
+    <!-- Mobile Hamburger Icon -->
+    <div class="mobile-hamburger" id="mobileHamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </header>
+
+  <!-- Mobile Navigation Menu -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav-link">Home</a>
+    <a id="mobileAboutNav" class="mobile-nav-link">About</a>
+    <a href="#projects" class="mobile-nav-link">Projects</a>
+    <a href="#resources" class="mobile-nav-link">Resources</a>
+    <a id="mobileContactNav" class="mobile-nav-link">Contact</a>
+  </div>
 
   <!-- Home / Hero Section -->
   <section class="hero" id="home">
     <div class="profile-container">
-      <img class="profile-image" src="images/pharaoh-photo.jpg" alt="Profile Picture">
-      <h1>Natassha Selvaraj</h1>
-      <p>Data Analyst at ADA</p>
-      <button class="cta-btn" id="openAbout">About Me</button>
+      <div class="photo-section">
+        <img class="profile-image" src="images/pharaoh-photo.jpg" alt="Profile Picture">
+      </div>
+      <div class="name-section">
+        <h1>Pharaoh Kipkirui Chirchir</h1>
+        <strong>Data Analyst | BI Specialist | Machine Learning Expert.</strong>
+      </div>
+      <div class="education">
+        <h3>Education</h3>
+        <p><strong>Master of Science in Data Analytics</strong><br>Nexford University | Nov 2023 – Dec 2024</p>
+        <p><strong>Bachelor of Economics and Statistics</strong><br>Chuka University | Sep 2012 – Nov 2016</p>
+      </div>
+      <div class="hero-buttons">
+        <button class="cta-btn" id="openAbout">About Me</button>
+        <a href="#projects" class="cta-btn">Projects</a>
+        <button class="cta-btn" id="openSkills">Skills</button>
+      </div>
     </div>
   </section>
 
@@ -366,7 +566,7 @@
           <h3>AI Trends &amp; Insights</h3>
           <p>Analysis of global AI growth and its impact on industries.</p>
           <p class="project-skills"><strong>Skills:</strong> Python, Pandas, Data Viz, Stats</p>
-          <a href="https://github.com/Chirchirp/The-Rise-of-Artificial-Intelligence-Trends-Impact-and-Insights.ipynb" target="_blank" class="project-link">View Project</a>
+          <a href="https://github.com/Chirchirp/The-Rise-of-Artificial-Intelligence-Trends-Impact-and-Insights.ipynb" target="_blank" rel="noopener" class="project-link">View Project</a>
         </div>
         <div class="project-card">
           <h3>Consumer Insights for Beats</h3>
@@ -392,39 +592,73 @@
         <div class="resource-card">
           <h3>Blog</h3>
           <p>Read my latest posts on data analysis and storytelling.</p>
-          <a href="https://yourblog.com" target="_blank" class="resource-link">Visit Blog</a>
+          <a href="https://chirchirp.github.io/Data-Analyst-Blog/#" target="_blank" class="resource-link">Visit Blog</a>
         </div>
         <div class="resource-card">
           <h3>Resume</h3>
           <p>Download my resume to learn more about my background and expertise.</p>
-          <a href="https://yourresume.com" target="_blank" class="resource-link">View Resume</a>
+          <a href="https://chirchirp.github.io/resume/" target="_blank" class="resource-link">View Resume</a>
         </div>
         <div class="resource-card">
           <h3>Certifications</h3>
           <p>Check out my certifications to verify my professional skills.</p>
-          <a href="https://yourcertifications.com" target="_blank" class="resource-link">See Certifications</a>
+          <a href="https://www.linkedin.com/in/pharaoh-chirchir-m-sc-0b600b138/details/certifications/" target="_blank" class="resource-link">See Certifications</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About Modal (Dynamic Floating Window) -->
-  <div class="modal-overlay" id="aboutModalOverlay">
-    <div class="modal about-modal">
-      <button class="close-btn" id="closeAboutModal">Close</button>
-      <h2>About Me</h2>
-      <p>
-        <strong>I am a data analyst passionate about complex data analysis and storytelling.</strong> I use words and data to create meaningful change. Over the past 7 years, I have helped organizations transform raw data into actionable insights.
-      </p>
-      <h3>What I Do</h3>
-      <p>I simplify complex tasks through programming, analyze large datasets, and uncover valuable insights. My expertise spans data analysis, visualization, machine learning, and problem solving.</p>
-      <h3>Evenings &amp; Beyond</h3>
-      <p>At night, I work on personal projects, continuous learning, and competitive programming. I embrace self-paced learning through online courses, video tutorials, and e-books.</p>
-      <h3>Community</h3>
-      <p>I share my knowledge by writing blogs, mentoring junior analysts, and building user-friendly dashboards. I make data work for people.</p>
-      
+  <!-- Skills Modal (Dynamic Floating Window) -->
+  <div class="modal-overlay" id="skillsModalOverlay">
+    <div class="modal skills-modal">
+      <button class="close-btn" id="closeSkillsModal">Close</button>
+      <h2>Skills</h2>
+      <div class="skills-columns">
+        <div class="technical-skills">
+          <h3>Technical Skills</h3>
+          <ul>
+            <li>Python (Pandas, NumPy, Scikit-learn)</li>
+            <li>SQL &amp; Database Management</li>
+            <li>Data Visualization (Tableau, Power BI)</li>
+            <li>Statistical Analysis (R, Excel)</li>
+            <li>Data Cleaning &amp; Transformation</li>
+            <li>Machine Learning Algorithms</li>
+            <li>Data Modeling &amp; Reporting</li>
+          </ul>
+        </div>
+        <div class="soft-skills">
+          <h3>Soft Skills</h3>
+          <ul>
+            <li>Effective Communication</li>
+            <li>Critical Thinking</li>
+            <li>Problem Solving</li>
+            <li>Time Management</li>
+            <li>Adaptability</li>
+            <li>Collaboration &amp; Teamwork</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+
+   <!-- About Modal (Dynamic Floating Window) -->
+   <div class="modal-overlay" id="aboutModalOverlay">
+    <div class="modal about-modal">
+      <button class="close-btn" id="closeAboutModal">Close</button>
+      <h2>Pharaoh in Nutshell.</h2>
+        I am a dedicated data analyst passionate about analyzing complex data and storytelling. I believe that words and data are the two most powerful tools to change the world when given the right intent and audience. In my entire career, I have blended my expertise to help organizations interpret data to drive meaningful decisions.
+      <p>
+        <strong>Delivering results.</strong> By the end of the day, I work on simplifying complex tasks through programming, analyzing large datasets, and uncovering valuable insights. My expertise spans around data analysis, visualization, machine learning, and problem solving. I specialize in end-to-end data analytics projects—from collecting data from third-party sources to delivering actionable insights, bridging the gap between raw data and decision-making.
+      <p>
+        <strong>Beyond work.</strong> After work, I dedicate my time to personal projects, continuous learning, and competitive programming. I challenge myself on platforms like HackerRank and explore new skills to stay ahead in the evolving data landscape. Most of my learning has come from online platforms—e-books, video tutorials, and self-paced courses. I deeply appreciate the democratization of education that has made these resources widely accessible.
+      <p>
+        <strong>Projects completed.</strong> Explore some of my data analytics projects on the projects section. I have linked my original work to their GitHub repositories, so feel free to download, explore, and experiment with my code.
+      <p>
+        <strong>Giving back to the community.</strong> I believe in sharing knowledge and supporting the data community. I write blogs on data analytics trends, mentor junior analysts on turning complex data into actionable insights, and help teams build dashboards, spot trends, and find data-driven answers. I make data work for people—whether it's through insightful reports, user-friendly dashboards, or answering tough business questions.
+      </p>
+    </div>
+  </div>
+
 
   <!-- Contact Modal with Form -->
   <div class="modal-overlay" id="contactModalOverlay">
@@ -443,22 +677,154 @@
     </div>
   </div>
 
+  <!-- Terms and Conditions Modal -->
+  <div class="modal-overlay" id="termsModalOverlay">
+    <div class="modal terms-modal">
+      <button class="close-btn" id="closeTermsModal">Close</button>
+      <h2>Terms and Conditions</h2>
+      <p>
+        Welcome to our website. By accessing and using this website, you agree to be bound by these Terms and Conditions and all applicable laws. If you do not agree with these terms, please do not use this website.
+      </p>
+      <h3>Intellectual Property</h3>
+      <p>
+        All content on this website, including text, graphics, logos, images, and data, is the property of Pharaoh Chirchir and is protected by international copyright laws.
+      </p>
+      <h3>Use of Website</h3>
+      <p>
+        This website is for personal and non-commercial use only. Unauthorized use or distribution of any material on this website is strictly prohibited.
+      </p>
+      <h3>Disclaimer and Limitation of Liability</h3>
+      <p>
+        The information provided on this website is for informational purposes only and does not constitute professional advice. Pharaoh Chirchir makes no warranties regarding the accuracy or completeness of the content and shall not be liable for any damages arising from its use.
+      </p>
+      <h3>Indemnification</h3>
+      <p>
+        You agree to indemnify and hold harmless Pharaoh Chirchir and its affiliates from any claims arising out of your use of this website.
+      </p>
+      <h3>Governing Law</h3>
+      <p>
+        These Terms shall be governed by the laws of your jurisdiction without regard to its conflict of law provisions.
+      </p>
+    </div>
+  </div>
+
+  <!-- Privacy Policy Modal -->
+  <div class="modal-overlay" id="privacyModalOverlay">
+    <div class="modal privacy-modal">
+      <button class="close-btn" id="closePrivacyModal">Close</button>
+      <h2>Privacy Policy</h2>
+      <p>
+        Your privacy is critically important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website.
+      </p>
+      <h3>Information Collection</h3>
+      <p>
+        We collect personal information that you voluntarily provide, such as your name and email address when you fill out our contact form.
+      </p>
+      <h3>Use of Information</h3>
+      <p>
+        We use the information to respond to your inquiries, improve our website, and provide you with relevant updates.
+      </p>
+      <h3>Data Security</h3>
+      <p>
+        We implement a variety of security measures to ensure the safety of your personal information.
+      </p>
+      <h3>Cookies</h3>
+      <p>
+        Our website uses cookies to enhance your experience. You can control cookies through your browser settings.
+      </p>
+      <h3>Third-Party Disclosure</h3>
+      <p>
+        We do not sell, trade, or otherwise transfer your personal information to outside parties without your consent, except as required by law.
+      </p>
+      <h3>Changes to Privacy Policy</h3>
+      <p>
+        We reserve the right to update this Privacy Policy at any time. Your continued use of the website signifies your acceptance of any changes.
+      </p>
+      <h3>Contact</h3>
+      <p>
+        If you have any questions regarding this Privacy Policy, please contact us using the information provided in the Contact modal.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <p>&copy; 2025 Pharaoh Chirchir. All rights reserved.</p>
+        <nav class="footer-nav">
+          <a id="termsNav" href="#">Terms and Conditions</a>
+          <a id="privacyNav" href="#">Privacy</a>
+        </nav>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/Chirchirp" target="_blank" aria-label="GitHub">
+          <svg viewBox="0 0 16 16" version="1.1" width="24" height="24" aria-hidden="true">
+            <path fill-rule="evenodd" fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 
+            2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 
+            0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 
+            1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 
+            0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 
+            1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 
+            2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 
+            2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 
+            0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 
+            8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+          </svg>
+        </a>
+        <a href="chirkiruiphero@gmail.com" target="_blank" aria-label="Gmail">
+          <svg viewBox="0 0 512 512" width="24" height="24">
+            <path fill="currentColor" d="M502.3 190.8L327.4 338.3c-15.1 13.3-37.5 
+            13.3-52.6 0L9.7 190.8C3.9 186.1 0 178.6 0 170.4V80c0-26.5 
+            21.5-48 48-48h416c26.5 0 48 21.5 48 
+            48v90.4c0 8.2-3.9 15.7-9.7 20.4zM480 
+            128L256 288 32 128v242c0 26.5 21.5 48 48 
+            48h352c26.5 0 48-21.5 48-48V128z"></path>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/pharaoh-chirchir-m-sc-0b600b138/" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 448 512" width="24" height="24">
+            <path fill="currentColor" d="M100.28 448H7.4V148.9h92.88zm-46.44-341a53.75 
+            53.75 0 1 1 53.75-53.75 53.75 53.75 0 0 1-53.75 53.75zM447.9 
+            448h-92.68V302.4c0-34.7-12.45-58.4-43.54-58.4-23.72 
+            0-37.86 16-44.06 31.5-2.28 5.5-2.85 13.2-2.85 
+            20.9V448h-92.68s1.23-261.9 0-288.1h92.68v40.8c12.3-19 
+            34.3-46.2 83.38-46.2 60.88 0 106.6 39.8 106.6 125.4V448z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
   <script>
+    // Mobile Menu Functionality
+    const mobileHamburger = document.getElementById('mobileHamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    mobileHamburger.addEventListener('click', () => {
+      mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+    });
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.style.display = 'none';
+      });
+    });
+
     // About Modal Functionality
     const aboutModalOverlay = document.getElementById('aboutModalOverlay');
     const openAboutBtn = document.getElementById('openAbout');
     const aboutNav = document.getElementById('aboutNav');
+    const mobileAboutNav = document.getElementById('mobileAboutNav');
     const closeAboutModal = document.getElementById('closeAboutModal');
-
     function openAboutModal() {
       aboutModalOverlay.style.display = 'flex';
     }
     function closeAbout() {
       aboutModalOverlay.style.display = 'none';
     }
-
     openAboutBtn.addEventListener('click', openAboutModal);
     aboutNav.addEventListener('click', openAboutModal);
+    mobileAboutNav && mobileAboutNav.addEventListener('click', openAboutModal);
     closeAboutModal.addEventListener('click', closeAbout);
     aboutModalOverlay.addEventListener('click', function(e) {
       if (e.target === aboutModalOverlay) closeAbout();
@@ -467,19 +833,67 @@
     // Contact Modal Functionality
     const contactModalOverlay = document.getElementById('contactModalOverlay');
     const contactNav = document.getElementById('contactNav');
+    const mobileContactNav = document.getElementById('mobileContactNav');
     const closeContactModal = document.getElementById('closeContactModal');
-
     function openContactModal() {
       contactModalOverlay.style.display = 'flex';
     }
     function closeContact() {
       contactModalOverlay.style.display = 'none';
     }
-
     contactNav.addEventListener('click', openContactModal);
+    mobileContactNav && mobileContactNav.addEventListener('click', openContactModal);
     closeContactModal.addEventListener('click', closeContact);
     contactModalOverlay.addEventListener('click', function(e) {
       if (e.target === contactModalOverlay) closeContact();
+    });
+
+    // Skills Modal Functionality
+    const skillsModalOverlay = document.getElementById('skillsModalOverlay');
+    const openSkillsBtn = document.getElementById('openSkills');
+    const closeSkillsModal = document.getElementById('closeSkillsModal');
+    function openSkillsModal() {
+      skillsModalOverlay.style.display = 'flex';
+    }
+    function closeSkills() {
+      skillsModalOverlay.style.display = 'none';
+    }
+    openSkillsBtn.addEventListener('click', openSkillsModal);
+    closeSkillsModal.addEventListener('click', closeSkills);
+    skillsModalOverlay.addEventListener('click', function(e) {
+      if (e.target === skillsModalOverlay) closeSkills();
+    });
+
+    // Terms and Conditions Modal Functionality
+    const termsModalOverlay = document.getElementById('termsModalOverlay');
+    const termsNav = document.getElementById('termsNav');
+    const closeTermsModal = document.getElementById('closeTermsModal');
+    function openTermsModal() {
+      termsModalOverlay.style.display = 'flex';
+    }
+    function closeTerms() {
+      termsModalOverlay.style.display = 'none';
+    }
+    termsNav.addEventListener('click', openTermsModal);
+    closeTermsModal.addEventListener('click', closeTerms);
+    termsModalOverlay.addEventListener('click', function(e) {
+      if (e.target === termsModalOverlay) closeTerms();
+    });
+
+    // Privacy Policy Modal Functionality
+    const privacyModalOverlay = document.getElementById('privacyModalOverlay');
+    const privacyNav = document.getElementById('privacyNav');
+    const closePrivacyModal = document.getElementById('closePrivacyModal');
+    function openPrivacyModal() {
+      privacyModalOverlay.style.display = 'flex';
+    }
+    function closePrivacy() {
+      privacyModalOverlay.style.display = 'none';
+    }
+    privacyNav.addEventListener('click', openPrivacyModal);
+    closePrivacyModal.addEventListener('click', closePrivacy);
+    privacyModalOverlay.addEventListener('click', function(e) {
+      if (e.target === privacyModalOverlay) closePrivacy();
     });
   </script>
 </body>
