@@ -111,7 +111,7 @@
       font-size: 1.5rem;
       margin: 1rem 0;
     }
-    /* Hero Section – Split into Photo, Name/Role, and Education */
+    /* Updated Hero Section – Two Columns */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -122,31 +122,77 @@
       overflow: hidden;
       text-align: center;
     }
+
     .hero::before {
       content: '';
       position: absolute;
       width: 200vw;
       height: 200vh;
-      background: radial-gradient(circle, rgba(0, 247, 255, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,247,255,0.1) 0%, transparent 70%);
       animation: float 20s infinite linear;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      z-index: -1; /* Keep background behind all content */
     }
+
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+      0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+      50% { transform: translate(-50%, -50%) translateY(-20px); }
     }
+
     .profile-container {
       position: relative;
       z-index: 1;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 1.5rem;
+      justify-content: center;
+      gap: 2rem;
+      width: 100%;
     }
-    .photo-section { }
-    .name-section { }
+
+    /* Left Column: Photo Section (30%) */
+    .photo-section {
+      flex: 0 0 30%;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Right Column: Info Section (70%) */
+    .info-section {
+      flex: 0 0 70%;
+      text-align: left;
+    }
+
+    /* Adjusted Profile Image */
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 40px rgba(0,247,255,0.2);
+      transition: transform 0.3s;
+    }
+    .profile-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* Name and Role Styling */
+    .name-section h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary) 70%, #ff70b8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    .name-section p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Education Styling */
     .education {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.9rem;
@@ -159,23 +205,8 @@
       color: var(--primary);
       margin-bottom: 0.5rem;
     }
-    .profile-image {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 40px rgba(0, 247, 255, 0.2);
-    }
-    .hero h1 {
-      font-size: 3.5rem;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero p {
-      font-size: 1.2rem;
-    }
+
+    /* Hero Buttons – Retain Awesome Animations */
     .hero-buttons {
       display: flex;
       gap: 1rem;
@@ -191,19 +222,41 @@
       font-weight: 600;
       position: relative;
       overflow: hidden;
-      transition: var(--transition);
+      transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,247,255,0.3);
     }
     .cta-btn::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2));
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2));
       opacity: 0;
       transition: var(--transition);
     }
     .cta-btn:hover::after {
       opacity: 1;
+    }
+
+    /* Responsive: Stack Columns on Mobile */
+    @media (max-width: 768px) {
+      .profile-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .photo-section,
+      .info-section {
+        flex: 1 1 100%;
+      }
+      .name-section h1 {
+        font-size: 2.5rem;
+      }
+      .info-section {
+        text-align: center;
+      }
     }
     /* Projects Section */
     .projects {
@@ -534,7 +587,7 @@
     <a id="mobileContactNav" class="mobile-nav-link">Contact</a>
   </div>
 
-  <!-- Updated Hero Section -->
+  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="profile-container">
       <div class="photo-section">
@@ -542,7 +595,7 @@
       </div>
       <div class="info-section">
         <div class="name-section">
-          <h1>Natassha Selvaraj</h1>
+          <h1>Pharaoh Kipkirui Chirchir</h1>
           <p>Data Analyst at ADA</p>
         </div>
         <div class="education">
