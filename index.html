@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
@@ -17,7 +17,8 @@
             display: flex;
             flex-direction: column;
             padding: 40px;
-            background-color: #f5f5f5;
+            background-color: #ffffff;  /* Pure white background */
+            color: #333333;            /* Dark gray text */
         }
 
         .header {
@@ -26,14 +27,15 @@
 
         .name {
             font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #2d3436;
+            font-weight: 600;          /* Semi-bold weight */
+            margin-bottom: 8px;
+            color: #1a1a1a;            /* Near-black for name */
         }
 
         .title {
             font-size: 1.2rem;
-            color: #636e72;
+            color: #666666;            /* Medium gray for title */
+            line-height: 1.4;
         }
 
         .portfolio-section {
@@ -42,10 +44,11 @@
 
         .section-title {
             font-size: 1.1rem;
-            color: #636e72;
+            color: #666666;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;       /* Increased letter spacing */
             margin-bottom: 30px;
+            font-weight: 500;          /* Medium weight */
         }
 
         .portfolio-items {
@@ -55,26 +58,30 @@
         }
 
         .portfolio-item {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            background-color: #f8f9fa;  /* Light gray card background */
+            padding: 24px;
+            border-radius: 12px;       /* Larger border radius */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Softer shadow */
+            transition: all 0.2s ease;
             cursor: pointer;
+            border: 1px solid #f1f1f1;  /* Subtle border */
         }
 
         .portfolio-item:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
 
         .portfolio-item h3 {
-            color: #2d3436;
-            margin-bottom: 8px;
+            color: #1a1a1a;
+            margin-bottom: 0;
+            font-size: 1.1rem;
+            font-weight: 500;          /* Medium weight for titles */
         }
 
         @media (max-width: 768px) {
             body {
-                padding: 20px;
+                padding: 24px;
             }
             
             .name {
@@ -85,8 +92,8 @@
 </head>
 <body>
     <header class="header">
-        <h1 class="name">Natassha Selvaraj</h1>
-        <p class="title">Consultant<br>ADA</p>
+        <h1 class="name">Pharaoh Chirchir</h1>
+        <p class="title">Data Analystt<br>ADA</p>
     </header>
 
     <main class="portfolio-section">
@@ -94,11 +101,11 @@
         
         <div class="portfolio-items">
             <div class="portfolio-item">
-                <h3>My New Workbook</h3>
+                <h3>My Projects</h3>
             </div>
             
             <div class="portfolio-item">
-                <h3>Linked Lists in Python</h3>
+                <h3>About me</h3>
             </div>
         </div>
     </main>
