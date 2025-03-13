@@ -14,26 +14,25 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    /* Global Reset and Smooth Scrolling */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', system-ui, sans-serif;
+      scroll-behavior: smooth;
     }
-
     @supports (font-variation-settings: normal) {
       * { font-family: 'Inter var', system-ui, sans-serif; }
     }
-
     body {
       background: var(--bg-gradient);
       color: var(--text-primary);
       line-height: 1.7;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
 
-    /* Modern Header with Glass Morphism */
+    /* Header with Glass Morphism */
     header {
       backdrop-filter: blur(16px);
       background: var(--glass-bg);
@@ -46,8 +45,7 @@
       justify-content: space-between;
       align-items: center;
     }
-
-    .logo {
+    .logo a {
       font-size: 1.8rem;
       font-weight: 700;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
@@ -55,19 +53,17 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     nav {
       display: flex;
       gap: 2rem;
     }
-
     nav a {
       position: relative;
       padding: 0.5rem 1rem;
       transition: var(--transition);
       cursor: pointer;
+      color: #fff;
     }
-
     nav a::after {
       content: '';
       position: absolute;
@@ -78,12 +74,11 @@
       background: var(--primary);
       transition: var(--transition);
     }
-
     nav a:hover::after {
       width: 100%;
     }
 
-    /* Enhanced Hero Section with Parallax */
+    /* Hero Section with Parallax Effect */
     .hero {
       min-height: 100vh;
       display: grid;
@@ -92,7 +87,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -104,23 +98,21 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
-
     .profile-container {
       position: relative;
       z-index: 1;
       text-align: center;
     }
-
     .profile-image {
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      border: 4px solid var(--primary);
+      /* Removing the border for a clean look */
+      object-fit: cover;
       margin-bottom: 2rem;
       transition: var(--transition);
       box-shadow: 0 0 40px rgba(0, 247, 255, 0.2);
     }
-
     .hero h1 {
       font-size: 3.5rem;
       margin-bottom: 1rem;
@@ -129,13 +121,10 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     .hero p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
     }
-
-    /* Dynamic Gradient Buttons */
     .cta-btn {
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       border: none;
@@ -147,7 +136,6 @@
       transition: var(--transition);
       cursor: pointer;
     }
-
     .cta-btn::after {
       content: '';
       position: absolute;
@@ -156,30 +144,26 @@
       opacity: 0;
       transition: var(--transition);
     }
-
     .cta-btn:hover::after {
       opacity: 1;
     }
 
-    /* Modern Card Design with Hover 3D Effect for Projects */
+    /* Projects Section */
     .projects {
       padding: 4rem 5%;
       background: transparent;
       color: var(--text-primary);
     }
-
     .projects .section-title {
       text-align: center;
       font-size: 2rem;
       margin-bottom: 2rem;
     }
-
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
     }
-
     .project-card {
       background: var(--glass-bg);
       backdrop-filter: blur(12px);
@@ -189,26 +173,21 @@
       transition: var(--transition);
       transform-style: preserve-3d;
     }
-
     .project-card:hover {
       transform: translateY(-0.5rem) rotateX(5deg) rotateY(5deg);
       box-shadow: 0 25px 50px -12px rgba(0, 247, 255, 0.25);
     }
-
     .project-card h3 {
       margin-bottom: 1rem;
       font-size: 1.5rem;
     }
-
     .project-card p {
       margin-bottom: 1rem;
     }
-
     .project-skills {
       font-size: 0.9rem;
       margin-top: 0.5rem;
     }
-
     .project-link {
       display: inline-block;
       margin-top: 0.5rem;
@@ -259,7 +238,7 @@
       text-decoration: underline;
     }
 
-    /* Advanced Modal with Backdrop Filter (shared styles) */
+    /* Modal Shared Styles */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -273,49 +252,40 @@
       align-items: center;
       z-index: 200;
     }
-
     .modal {
       background: var(--glass-bg);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       width: 75%;
-      height: 75%;
+      max-height: 75%;
       overflow-y: auto;
       border-radius: 1rem;
       padding: 2rem;
       position: relative;
     }
-
-    /* About Modal (more compact and dynamic) */
     .about-modal {
       font-size: 0.9rem;
       animation: modalFloat 0.5s ease-out;
     }
-
     @keyframes modalFloat {
       0% { opacity: 0; transform: translateY(-20px) scale(0.95); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
-
     .modal h2 {
       margin-bottom: 1.5rem;
     }
-
     .modal h3 {
       margin: 1.5rem 0 1rem;
     }
-
     .modal p {
       margin-bottom: 1rem;
       line-height: 1.5;
     }
-
     .modal ul {
       list-style: disc;
       margin-left: 1.5rem;
       margin-bottom: 1rem;
     }
-
     .modal .close-btn {
       position: absolute;
       top: 1rem;
@@ -329,12 +299,11 @@
       color: #000;
       transition: var(--transition);
     }
-
     .modal .close-btn:hover {
       background: var(--secondary);
     }
 
-    /* Contact Form Styles inside Modal */
+    /* Contact Form Styles */
     .modal form {
       display: flex;
       flex-direction: column;
@@ -360,15 +329,15 @@
 
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.5rem; }
-      nav { display: none; } /* Mobile menu implementation may be added */
-      .modal { width: 90%; height: 80%; }
+      nav { display: none; } /* Consider mobile menu */ 
+      .modal { width: 90%; max-height: 80%; }
     }
   </style>
 </head>
 <body>
   <!-- Header / Navigation -->
   <header>
-    <div class="logo"><a href="#">Natassha</a></div>
+    <div class="logo"><a href="#home">Natassha</a></div>
     <nav>
       <a href="#home">Home</a>
       <a id="aboutNav">About</a>
@@ -381,7 +350,7 @@
   <!-- Home / Hero Section -->
   <section class="hero" id="home">
     <div class="profile-container">
-      <img class="profile-image" src="images/pharaoh-photo.jpg" alt="Natassha's Profile Picture" />
+      <img class="profile-image" src="images/pharaoh-photo.jpg" alt="Profile Picture">
       <h1>Natassha Selvaraj</h1>
       <p>Data Analyst at ADA</p>
       <button class="cta-btn" id="openAbout">About Me</button>
@@ -439,37 +408,21 @@
     </div>
   </section>
 
-  <!-- About Modal (Dynamic Floating Window, Compact Font) -->
+  <!-- About Modal (Dynamic Floating Window) -->
   <div class="modal-overlay" id="aboutModalOverlay">
     <div class="modal about-modal">
       <button class="close-btn" id="closeAboutModal">Close</button>
       <h2>About Me</h2>
       <p>
-        <strong>I am a data analyst passionate about complex data analysis and storytelling.</strong>
-        I use words and data to create meaningful change. Over the past 7 years, I have helped organizations transform raw data into actionable insights.
+        <strong>I am a data analyst passionate about complex data analysis and storytelling.</strong> I use words and data to create meaningful change. Over the past 7 years, I have helped organizations transform raw data into actionable insights.
       </p>
       <h3>What I Do</h3>
-      <p>
-        I simplify complex tasks through programming, analyze large datasets, and uncover valuable insights. My expertise spans data analysis, visualization, machine learning, and problem solving.
-      </p>
-      <h3>Evenings & Beyond</h3>
-      <p>
-        At night, I work on personal projects, continuous learning, and competitive programming. I embrace self-paced learning through online courses, video tutorials, and e-books.
-      </p>
+      <p>I simplify complex tasks through programming, analyze large datasets, and uncover valuable insights. My expertise spans data analysis, visualization, machine learning, and problem solving.</p>
+      <h3>Evenings &amp; Beyond</h3>
+      <p>At night, I work on personal projects, continuous learning, and competitive programming. I embrace self-paced learning through online courses, video tutorials, and e-books.</p>
       <h3>Community</h3>
-      <p>
-        I share my knowledge by writing blogs, mentoring junior analysts, and building user-friendly dashboards. I make data work for people.
-      </p>
-      <ul>
-        <li>Data Mastery</li>
-        <li>Data Cleaning &amp; Transformation</li>
-        <li>Statistical Analysis</li>
-        <li>Predictive Modeling</li>
-        <li>Real-Time Insights</li>
-        <li>Visual Storytelling</li>
-        <li>Interactive Dashboards</li>
-        <li>User-Centric Design</li>
-      </ul>
+      <p>I share my knowledge by writing blogs, mentoring junior analysts, and building user-friendly dashboards. I make data work for people.</p>
+      
     </div>
   </div>
 
@@ -480,9 +433,9 @@
       <h2>Contact Me</h2>
       <form id="contactForm">
         <label for="contactName">Name:</label>
-        <input type="text" id="contactName" name="contactName" required />
+        <input type="text" id="contactName" name="contactName" required>
         <label for="contactEmail">Email:</label>
-        <input type="email" id="contactEmail" name="contactEmail" required />
+        <input type="email" id="contactEmail" name="contactEmail" required>
         <label for="contactMessage">Message:</label>
         <textarea id="contactMessage" name="contactMessage" rows="4" required></textarea>
         <button type="submit" class="cta-btn">Send Message</button>
@@ -491,7 +444,7 @@
   </div>
 
   <script>
-    // About Modal functionality
+    // About Modal Functionality
     const aboutModalOverlay = document.getElementById('aboutModalOverlay');
     const openAboutBtn = document.getElementById('openAbout');
     const aboutNav = document.getElementById('aboutNav');
@@ -500,7 +453,6 @@
     function openAboutModal() {
       aboutModalOverlay.style.display = 'flex';
     }
-
     function closeAbout() {
       aboutModalOverlay.style.display = 'none';
     }
@@ -509,12 +461,10 @@
     aboutNav.addEventListener('click', openAboutModal);
     closeAboutModal.addEventListener('click', closeAbout);
     aboutModalOverlay.addEventListener('click', function(e) {
-      if (e.target === aboutModalOverlay) {
-        closeAbout();
-      }
+      if (e.target === aboutModalOverlay) closeAbout();
     });
 
-    // Contact Modal functionality
+    // Contact Modal Functionality
     const contactModalOverlay = document.getElementById('contactModalOverlay');
     const contactNav = document.getElementById('contactNav');
     const closeContactModal = document.getElementById('closeContactModal');
@@ -522,7 +472,6 @@
     function openContactModal() {
       contactModalOverlay.style.display = 'flex';
     }
-
     function closeContact() {
       contactModalOverlay.style.display = 'none';
     }
@@ -530,9 +479,7 @@
     contactNav.addEventListener('click', openContactModal);
     closeContactModal.addEventListener('click', closeContact);
     contactModalOverlay.addEventListener('click', function(e) {
-      if (e.target === contactModalOverlay) {
-        closeContact();
-      }
+      if (e.target === contactModalOverlay) closeContact();
     });
   </script>
 </body>
