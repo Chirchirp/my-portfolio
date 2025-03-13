@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Natassha's Portfolio</title>
+  <title>Pharaoh's Portfolio</title>
   <style>
     /* Global Reset & Base Styles */
     * {
@@ -136,6 +136,50 @@
       font-weight: bold;
     }
 
+    /* Resources Section */
+    .resources {
+      padding: 60px 40px;
+      background: #fff;
+      color: #333;
+    }
+    .resources .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .resources .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+    }
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .resource-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.3s;
+    }
+    .resource-card:hover {
+      transform: translateY(-5px);
+    }
+    .resource-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+    .resource-card p {
+      margin-bottom: 10px;
+    }
+    .resource-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #1e3c72;
+      font-weight: bold;
+    }
+
     /* Modal Styles for About Section */
     .modal-overlay {
       position: fixed;
@@ -215,10 +259,11 @@
 <body>
   <!-- Header / Navigation -->
   <header>
-    <div class="logo"><a href="#">Natassha</a></div>
+    <div class="logo"><a href="#">Pharaoh</a></div>
     <nav>
       <a id="aboutNav">About</a>
       <a href="#projects">Projects</a>
+      <a href="#resources">Resources</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -226,8 +271,8 @@
   <!-- Hero Section -->
   <section class="hero">
     <img src="https://via.placeholder.com/150" alt="Natassha's Profile Picture" />
-    <h1>Natassha Selvaraj</h1>
-    <p>Data Analyst at ADA</p>
+    <h1>Pharaoh Kipkirui Chirchir</h1>
+    <p>Data Analyst | BI Specialist | ML Expert</p>
     <button class="cta-btn" id="openAbout">About Me</button>
   </section>
 
@@ -258,6 +303,30 @@
     </div>
   </section>
 
+  <!-- Resources Section -->
+  <section class="resources" id="resources">
+    <div class="container">
+      <h2 class="section-title">Resources</h2>
+      <div class="resources-grid">
+        <div class="resource-card">
+          <h3>Blog</h3>
+          <p>Read my latest posts on data analysis and storytelling.</p>
+          <a href="https://yourblog.com" target="_blank" class="resource-link">Visit Blog</a>
+        </div>
+        <div class="resource-card">
+          <h3>Resume</h3>
+          <p>Download my resume to learn more about my background and expertise.</p>
+          <a href="https://yourresume.com" target="_blank" class="resource-link">View Resume</a>
+        </div>
+        <div class="resource-card">
+          <h3>Certifications</h3>
+          <p>Check out my certifications to verify my professional skills.</p>
+          <a href="https://yourcertifications.com" target="_blank" class="resource-link">See Certifications</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- About Modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
@@ -282,28 +351,13 @@
       <h3>Giving Back to the Community</h3>
       <p>
         I believe in sharing knowledge and supporting the data community. I write blogs on data analytics trends, mentor junior analysts on turning complex data into actionable insights, and help teams build dashboards, spot trends, and find data-driven answers. I make data work for people—whether it's through insightful reports, user-friendly dashboards, or answering tough business questions.
-      </p>
-      <ul>
-        <li>Data Mastery</li>
-        <li>Data Cleaning &amp; Transformation</li>
-        <li>Statistical Analysis</li>
-        <li>Predictive Modeling</li>
-        <li>Real-Time Insights</li>
-        <li>Visual Storytelling</li>
-        <li>Interactive Dashboards</li>
-        <li>Data Visualization</li>
-        <li>Reporting &amp; Analysis</li>
-        <li>User-Centric Design</li>
-      </ul>
+      </p> 
     </div>
   </div>
 
   <!-- Contact Section -->
   <section id="contact" class="contact-section">
     <h2>Contact</h2>
-    <p style="margin-bottom:20px;">
-      Feel free to reach out via email: <a href="mailto:natassha@example.com">natassha@example.com</a>
-    </p>
     <p>Connect with me on social media:</p>
     <div>
       <a href="#" style="margin: 0 10px;">Twitter</a>
