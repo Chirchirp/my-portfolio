@@ -1,399 +1,355 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pharaoh's Portfolio</title>
-  <style>
-    /* Global Reset & Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    body {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
-      line-height: 1.6;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharaoh's Portfolio | Data Visionary</title>
+    <meta name="description" content="Data Analyst & AI Specialist transforming numbers into narratives">
+    
+    <!-- Modern CSS Features -->
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff4d8f;
+            --bg-gradient: linear-gradient(45deg, #0a0a2e, #1a1a4a);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #f0f0f0;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    /* Header / Navigation */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: rgba(0, 0, 0, 0.4);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 100;
-    }
-    header .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    header nav a {
-      margin: 0 15px;
-      font-size: 1rem;
-      transition: color 0.3s;
-    }
-    header nav a:hover {
-      color: #ffcc00;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
 
-    /* Hero Section */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      height: 100vh;
-      padding-top: 80px; /* Offset for fixed header */
-    }
-    .hero img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid #fff;
-      margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-    .cta-btn {
-      padding: 12px 30px;
-      background: #ffcc00;
-      color: #000;
-      border: none;
-      border-radius: 30px;
-      font-size: 1rem;
-      font-weight: bold;
-      transition: background 0.3s;
-      cursor: pointer;
-    }
-    .cta-btn:hover {
-      background: #e6b800;
-    }
+        @supports (font-variation-settings: normal) {
+            * { font-family: 'Inter var', system-ui, sans-serif; }
+        }
 
-    /* Projects Section */
-    .projects {
-      padding: 60px 40px;
-      background: #f9f9f9;
-      color: #333;
-    }
-    .projects .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .projects .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2rem;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    .project-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 20px;
-      transition: transform 0.3s;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-    }
-    .project-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.25rem;
-    }
-    .project-card p {
-      margin-bottom: 10px;
-    }
-    .project-skills {
-      font-size: 0.9rem;
-      margin-top: 10px;
-    }
-    .project-link {
-      display: inline-block;
-      margin-top: 10px;
-      color: #1e3c72;
-      font-weight: bold;
-    }
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-    /* Resources Section */
-    .resources {
-      padding: 60px 40px;
-      background: #fff;
-      color: #333;
-    }
-    .resources .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .resources .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2rem;
-    }
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    .resource-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 20px;
-      transition: transform 0.3s;
-    }
-    .resource-card:hover {
-      transform: translateY(-5px);
-    }
-    .resource-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.25rem;
-    }
-    .resource-card p {
-      margin-bottom: 10px;
-    }
-    .resource-link {
-      display: inline-block;
-      margin-top: 10px;
-      color: #1e3c72;
-      font-weight: bold;
-    }
+        /* Modern Header with Glass Morphism */
+        header {
+            backdrop-filter: blur(16px);
+            background: var(--glass-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* Modal Styles for About Section */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      display: none; /* Initially hidden */
-      justify-content: center;
-      align-items: center;
-      z-index: 200;
-    }
-    .modal {
-      background: #fff;
-      color: #333;
-      width: 75%;
-      height: 75%;
-      overflow-y: auto;
-      border-radius: 10px;
-      padding: 20px;
-      position: relative;
-    }
-    .modal h2 {
-      margin-bottom: 20px;
-    }
-    .modal h3 {
-      margin: 20px 0 10px;
-    }
-    .modal p {
-      margin-bottom: 15px;
-      line-height: 1.5;
-    }
-    .modal ul {
-      list-style: disc;
-      margin-left: 20px;
-      margin-bottom: 15px;
-    }
-    .modal .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #ffcc00;
-      border: none;
-      padding: 5px 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-    }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    /* Contact Section */
-    .contact-section {
-      padding: 60px 40px;
-      text-align: center;
-      background: #fff;
-      color: #333;
-    }
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
 
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      header {
-        padding: 10px 20px;
-      }
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      .modal {
-        width: 90%;
-        height: 80%;
-      }
-    }
-  </style>
+        nav a {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Enhanced Hero Section with Parallax */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200vw;
+            height: 200vh;
+            background: radial-gradient(circle, rgba(0, 247, 255, 0.1) 0%, transparent 70%);
+            animation: float 20s infinite linear;
+        }
+
+        .profile-container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            box-shadow: 0 0 40px rgba(0, 247, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Modern Card Design with Hover 3D Effect */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 5%;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+        }
+
+        .project-card:hover {
+            transform: translateY(-0.5rem) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 25px 50px -12px rgba(0, 247, 255, 0.25);
+        }
+
+        /* Advanced Modal with Backdrop Filter */
+        .modal-overlay {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Dynamic Gradient Buttons */
+        .cta-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .cta-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover::after {
+            opacity: 1;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; } /* Consider mobile menu implementation */
+        }
+    </style>
+
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <!-- Header / Navigation -->
-  <header>
-    <div class="logo"><a href="#">Pharaoh</a></div>
-    <nav>
-      <a id="aboutNav">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#resources">Resources</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    <!-- Add loader animation -->
+    <div class="loader"></div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <img src="https://via.placeholder.com/150" alt="Natassha's Profile Picture" />
-    <h1>Pharaoh Kipkirui Chirchir</h1>
-    <p>Data Analyst | BI Specialist | ML Expert</p>
-    <button class="cta-btn" id="openAbout">About Me</button>
-  </section>
+    <header>
+        <div class="logo">PHARAOH</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#insights">Insights</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-  <!-- Projects Section -->
-  <section class="projects" id="projects">
-    <div class="container">
-      <h2 class="section-title">Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>AI Trends &amp; Insights</h3>
-          <p>Analysis of global AI growth and its impact on industries.</p>
-          <p class="project-skills"><strong>Skills:</strong> Python, Pandas, Data Viz, Stats</p>
-          <a href="https://github.com/Chirchirp/The-Rise-of-Artificial-Intelligence-Trends-Impact-and-Insights.ipynb" target="_blank" class="project-link">View Project</a>
+    <main>
+        <section class="hero">
+            <div class="profile-container">
+                <img src="assets/profile.jpg" alt="Pharaoh Chirchir" class="profile-image">
+                <h1>Data Alchemist</h1>
+                <p>Transforming Raw Data into Strategic Gold</p>
+                <button class="cta-btn">Explore My Universe</button>
+            </div>
+        </section>
+
+        <!-- Add particle.js background -->
+        <canvas id="particleCanvas"></canvas>
+
+        <!-- Enhanced Projects Section -->
+        <section id="projects">
+            <div class="projects-grid">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+              <div class="project-card">
+                <h3>AI Trends &amp; Insights</h3>
+                <p>Analysis of global AI growth and its impact on industries.</p>
+                <p class="project-skills"><strong>Skills:</strong> Python, Pandas, Data Viz, Stats</p>
+                <a href="https://github.com/Chirchirp/The-Rise-of-Artificial-Intelligence-Trends-Impact-and-Insights.ipynb" target="_blank" class="project-link">View Project</a>
+              </div>
+              <div class="project-card">
+                <h3>Consumer Insights for Beats</h3>
+                <p>Segmentation and trend analysis with interactive visualizations.</p>
+                <p class="project-skills"><strong>Skills:</strong> Python, Pandas, Matplotlib</p>
+                <a href="https://colab.research.google.com/drive/1XNxkdTQ6K0fG2OkM0QLvi35e9zQ_1ODe?usp=sharing" target="_blank" class="project-link">View Project</a>
+              </div>
+              <div class="project-card">
+                <h3>Customer Churn Prediction</h3>
+                <p>XGBoost model with 89% accuracy and a Flask API for deployment.</p>
+                <p class="project-skills"><strong>Skills:</strong> Python, XGBoost, Flask</p>
+                <a href="https://github.com/Chirchirp/Final-Project--Model-Deployment" target="_blank" class="project-link">View Project</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      
+        <!-- Resources Section -->
+        <section class="resources" id="resources">
+          <div class="container">
+            <h2 class="section-title">Resources</h2>
+            <div class="resources-grid">
+              <div class="resource-card">
+                <h3>Blog</h3>
+                <p>Read my latest posts on data analysis and storytelling.</p>
+                <a href="https://yourblog.com" target="_blank" class="resource-link">Visit Blog</a>
+              </div>
+              <div class="resource-card">
+                <h3>Resume</h3>
+                <p>Download my resume to learn more about my background and expertise.</p>
+                <a href="https://yourresume.com" target="_blank" class="resource-link">View Resume</a>
+              </div>
+              <div class="resource-card">
+                <h3>Certifications</h3>
+                <p>Check out my certifications to verify my professional skills.</p>
+                <a href="https://yourcertifications.com" target="_blank" class="resource-link">See Certifications</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      
+        <!-- About Modal -->
+        <div class="modal-overlay" id="modalOverlay">
+          <div class="modal">
+            <button class="close-btn" id="closeModal">Close</button>
+            <h2>About Me</h2>
+            <p>
+              <strong>I am a data analyst with a passion for complex data analysis and storytelling.</strong>
+              I believe that words and data are the two most powerful tools to change the world when given the right intent and audience. Over the past 7 years, I have helped organizations interpret data to drive meaningful decisions.
+            </p>
+            <h3>What I Do</h3>
+            <p>
+              By the end of the day, I work on simplifying complex tasks through programming, analyzing large datasets, and uncovering valuable insights. My expertise spans data analysis, visualization, machine learning, and problem solving. I specialize in end-to-end data analytics projects—from collecting data from third-party sources to delivering actionable insights, bridging the gap between raw data and decision-making.
+            </p>
+            <h3>What I Do</h3>
+            <p>
+              At night, I dedicate time to personal projects, continuous learning, and competitive programming. I challenge myself on platforms like HackerRank and explore new skills to stay ahead in the evolving data landscape. Most of my learning has come from online platforms—e-books, video tutorials, and self-paced courses. I deeply appreciate the democratization of education that has made these resources widely accessible.
+            </p>
+            <h3>Beyond Work</h3>
+            <p>
+              Explore some of my data analytics projects below. I have linked my original work to their GitHub repositories, so feel free to download, explore, and experiment with my code.
+            </p>
+            <h3>Giving Back to the Community</h3>
+            <p>
+              I believe in sharing knowledge and supporting the data community. I write blogs on data analytics trends, mentor junior analysts on turning complex data into actionable insights, and help teams build dashboards, spot trends, and find data-driven answers. I make data work for people—whether it's through insightful reports, user-friendly dashboards, or answering tough business questions.
+            </p> 
+          </div>
         </div>
-        <div class="project-card">
-          <h3>Consumer Insights for Beats</h3>
-          <p>Segmentation and trend analysis with interactive visualizations.</p>
-          <p class="project-skills"><strong>Skills:</strong> Python, Pandas, Matplotlib</p>
-          <a href="https://colab.research.google.com/drive/1XNxkdTQ6K0fG2OkM0QLvi35e9zQ_1ODe?usp=sharing" target="_blank" class="project-link">View Project</a>
-        </div>
-        <div class="project-card">
-          <h3>Customer Churn Prediction</h3>
-          <p>XGBoost model with 89% accuracy and a Flask API for deployment.</p>
-          <p class="project-skills"><strong>Skills:</strong> Python, XGBoost, Flask</p>
-          <a href="https://github.com/Chirchirp/Final-Project--Model-Deployment" target="_blank" class="project-link">View Project</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resources Section -->
-  <section class="resources" id="resources">
-    <div class="container">
-      <h2 class="section-title">Resources</h2>
-      <div class="resources-grid">
-        <div class="resource-card">
-          <h3>Blog</h3>
-          <p>Read my latest posts on data analysis and storytelling.</p>
-          <a href="https://yourblog.com" target="_blank" class="resource-link">Visit Blog</a>
-        </div>
-        <div class="resource-card">
-          <h3>Resume</h3>
-          <p>Download my resume to learn more about my background and expertise.</p>
-          <a href="https://yourresume.com" target="_blank" class="resource-link">View Resume</a>
-        </div>
-        <div class="resource-card">
-          <h3>Certifications</h3>
-          <p>Check out my certifications to verify my professional skills.</p>
-          <a href="https://yourcertifications.com" target="_blank" class="resource-link">See Certifications</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <button class="close-btn" id="closeModal">Close</button>
-      <h2>About Me</h2>
-      <p>
-        <strong>I am a data analyst with a passion for complex data analysis and storytelling.</strong>
-        I believe that words and data are the two most powerful tools to change the world when given the right intent and audience. Over the past 7 years, I have helped organizations interpret data to drive meaningful decisions.
-      </p>
-      <h3>What I Do</h3>
-      <p>
-        By the end of the day, I work on simplifying complex tasks through programming, analyzing large datasets, and uncovering valuable insights. My expertise spans data analysis, visualization, machine learning, and problem solving. I specialize in end-to-end data analytics projects—from collecting data from third-party sources to delivering actionable insights, bridging the gap between raw data and decision-making.
-      </p>
-      <h3>What I Do</h3>
-      <p>
-        At night, I dedicate time to personal projects, continuous learning, and competitive programming. I challenge myself on platforms like HackerRank and explore new skills to stay ahead in the evolving data landscape. Most of my learning has come from online platforms—e-books, video tutorials, and self-paced courses. I deeply appreciate the democratization of education that has made these resources widely accessible.
-      </p>
-      <h3>Beyond Work</h3>
-      <p>
-        Explore some of my data analytics projects below. I have linked my original work to their GitHub repositories, so feel free to download, explore, and experiment with my code.
-      </p>
-      <h3>Giving Back to the Community</h3>
-      <p>
-        I believe in sharing knowledge and supporting the data community. I write blogs on data analytics trends, mentor junior analysts on turning complex data into actionable insights, and help teams build dashboards, spot trends, and find data-driven answers. I make data work for people—whether it's through insightful reports, user-friendly dashboards, or answering tough business questions.
-      </p> 
-    </div>
-  </div>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact-section">
-    <h2>Contact</h2>
-    <p>Connect with me on social media:</p>
-    <div>
-      <a href="#" style="margin: 0 10px;">Twitter</a>
-      <a href="#" style="margin: 0 10px;">LinkedIn</a>
-      <a href="#" style="margin: 0 10px;">GitHub</a>
-    </div>
-  </section>
-
-  <script>
-    // Get modal elements
-    const modalOverlay = document.getElementById('modalOverlay');
-    const openAboutBtn = document.getElementById('openAbout');
-    const closeModalBtn = document.getElementById('closeModal');
-    const aboutNav = document.getElementById('aboutNav');
-
-    // Function to open modal
-    function openModal() {
-      modalOverlay.style.display = 'flex';
-    }
-
-    // Function to close modal
-    function closeModal() {
-      modalOverlay.style.display = 'none';
-    }
-
-    // Event listeners for opening and closing the modal
-    openAboutBtn.addEventListener('click', openModal);
-    aboutNav.addEventListener('click', openModal);
-    closeModalBtn.addEventListener('click', closeModal);
-
-    // Close modal if clicking outside the modal content
-    modalOverlay.addEventListener('click', function(e) {
-      if (e.target === modalOverlay) {
-        closeModal();
-      }
-    });
-  </script>
-</body>
-</html>
+      
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+          <h2>Contact</h2>
+          <p>Connect with me on social media:</p>
+          <div>
+            <a href="#" style="margin: 0 10px;">Twitter</a>
+            <a href="#" style="margin: 0 10px;">LinkedIn</a>
+            <a href="#" style="margin: 0 10px;">GitHub</a>
+          </div>
+        </section>
+      
+        <script>
+          // Get modal elements
+          const modalOverlay = document.getElementById('modalOverlay');
+          const openAboutBtn = document.getElementById('openAbout');
+          const closeModalBtn = document.getElementById('closeModal');
+          const aboutNav = document.getElementById('aboutNav');
+      
+          // Function to open modal
+          function openModal() {
+            modalOverlay.style.display = 'flex';
+          }
+      
+          // Function to close modal
+          function closeModal() {
+            modalOverlay.style.display = 'none';
+          }
+      
+          // Event listeners for opening and closing the modal
+          openAboutBtn.addEventListener('click', openModal);
+          aboutNav.addEventListener('click', openModal);
+          closeModalBtn.addEventListener('click', closeModal);
+      
+          // Close modal if clicking outside the modal content
+          modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+              closeModal();
+            }
+          });
+        </script>
+      </body>
+      </html>
