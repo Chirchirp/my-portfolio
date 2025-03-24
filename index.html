@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pharaoh's Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+
+  <!-- EmailJS (Optional: for sending emails directly from the client) -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    // Initialize EmailJS with your user ID (replace 'YOUR_USER_ID' with your actual EmailJS user id)
+    (function(){
+      emailjs.init("Z5IfVlRtBYqwWMLSM");
+    })();
+  </script>
+
+
   <style>
     :root {
       --primary: #00f7ff;
@@ -382,7 +394,7 @@
     .modal {
       background: #fff;
       color: #333;
-      width: 75%;
+      width: 50%;
       max-height: 75%;
       overflow-y: auto;
       border-radius: 1rem;
@@ -433,26 +445,26 @@
     .modal form {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
     .modal form label {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       margin-bottom: 0.25rem;
-      color: #333;
+      color: #040005fa;
     }
     .modal form input,
     .modal form textarea {
-      padding: 0.5rem 0.75rem;
-      border: 1px solid #ccc;
+      padding: 0.8rem 0.75rem;
+      border: 1px solid #c608cd;
       border-radius: 0.5rem;
-      background: #f9f9f9;
-      color: #333;
+      background: #e5d4e0;
+      color: #7e66ab;
       font-size: 0.9rem;
-      transition: border 0.3s, box-shadow 0.3s;
+      transition: border 0.3s, box-shadow 0.5s;
     }
     .modal form input:focus,
     .modal form textarea:focus {
-      outline: none;
+      outline: rgb(179, 17, 149);
       border-color: var(--primary);
       box-shadow: 0 0 5px rgba(0, 247, 255, 0.5);
     }
@@ -596,7 +608,7 @@
       <div class="info-section">
         <div class="name-section">
           <h1>Pharaoh Kipkirui Chirchir</h1>
-          <p>Data Analyst | BI Specialist | ML & Tech Innovator</p>
+          <p>Data Analyst | BI Specialist | ML and Tech Innovator</p>
         </div>
         <div class="education">
           <h3>Education</h3>
@@ -624,8 +636,8 @@
           <p class="project-skills"><strong>Skills:</strong> SQL, Excel, Power BI</p>
           <a href="https://github.com/Chirchirp/Sales-Data-Analysis" target="_blank" rel="noopener" class="project-link">View Project</a>
         </div>
-         <div class="project-card">
-          <h3>AI Trends and Insights</h3>
+        <div class="project-card">
+          <h3>AI Trends &amp; Insights</h3>
           <p>Analysis of global AI growth and its impact on industries.</p>
           <p class="project-skills"><strong>Skills:</strong> Python, Pandas, Data Viz, Stats</p>
           <a href="https://github.com/Chirchirp/The-Rise-of-Artificial-Intelligence-Trends-Impact-and-Insights.ipynb" target="_blank" rel="noopener" class="project-link">View Project</a>
@@ -742,21 +754,22 @@
 
 
   <!-- Contact Modal with Form -->
-  <div class="modal-overlay" id="contactModalOverlay">
+  <div class="modal-overlay" id="contactModalOverlay" style="display:none;">
     <div class="modal">
       <button class="close-btn" id="closeContactModal">Close</button>
       <h2>Contact Me</h2>
       <form id="contactForm">
-        <label for="contactName">Name:</label>
-        <input type="text" id="contactName" name="contactName" required>
-        <label for="contactEmail">Email:</label>
-        <input type="email" id="contactEmail" name="contactEmail" required>
-        <label for="contactMessage">Message:</label>
-        <textarea id="contactMessage" name="contactMessage" rows="4" required></textarea>
+        <label for="yourName">Your Name:</label>
+        <input type="text" id="yourName" name="yourName" required />
+        <label for="yourEmail">Email Address:</label>
+        <input type="email" id="yourEmail" name="yourEmail" required />
+        <label for="yourMessage">Message:</label>
+        <textarea id="yourMessage" name="yourMessage" rows="4" required></textarea>
         <button type="submit" class="cta-btn">Send Message</button>
       </form>
     </div>
   </div>
+
 
   <!-- Terms and Conditions Modal -->
   <div class="modal-overlay" id="termsModalOverlay">
@@ -853,7 +866,7 @@
             8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
           </svg>
         </a>
-        <a href="chirkiruiphero@gmail.com" target="_blank" aria-label="Gmail">
+        <a href="mailto:chirkiruiphero@gmail.com" target="_blank" aria-label="Gmail">
           <svg viewBox="0 0 512 512" width="24" height="24">
             <path fill="currentColor" d="M502.3 190.8L327.4 338.3c-15.1 13.3-37.5 
             13.3-52.6 0L9.7 190.8C3.9 186.1 0 178.6 0 170.4V80c0-26.5 
@@ -878,8 +891,8 @@
   </footer>
 
   <script>
-    // Mobile Menu Functionality
-    const mobileHamburger = document.getElementById('mobileHamburger');
+     // Mobile Menu Functionality
+     const mobileHamburger = document.getElementById('mobileHamburger');
     const mobileNav = document.getElementById('mobileNav');
     mobileHamburger.addEventListener('click', () => {
       mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
@@ -916,17 +929,35 @@
     const contactNav = document.getElementById('contactNav');
     const mobileContactNav = document.getElementById('mobileContactNav');
     const closeContactModal = document.getElementById('closeContactModal');
+
     function openContactModal() {
       contactModalOverlay.style.display = 'flex';
     }
+
     function closeContact() {
       contactModalOverlay.style.display = 'none';
     }
+
     contactNav.addEventListener('click', openContactModal);
     mobileContactNav && mobileContactNav.addEventListener('click', openContactModal);
     closeContactModal.addEventListener('click', closeContact);
     contactModalOverlay.addEventListener('click', function(e) {
       if (e.target === contactModalOverlay) closeContact();
+    });
+
+    // EmailJS Form Submission Handling
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    emailjs.sendForm('service_h3eoa9g', 'template_9varj9u', this)
+      .then(function() {
+        alert("Thanks for your message. You will receive a response within 24 hours.");
+        closeContact(); // Hide the modal after successful submission
+        contactForm.reset(); // Reset the form fields
+      }, function(error) {
+        alert("Failed to send message, please try again later.");
+      });
     });
 
     // Skills Modal Functionality
@@ -979,3 +1010,4 @@
   </script>
 </body>
 </html>
+ 
